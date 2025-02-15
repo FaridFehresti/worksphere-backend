@@ -8,6 +8,7 @@ import { RouterModule } from '@nestjs/core';
 import { routes } from './app.routes';
 import { TasksModule } from './tasks/tasks.module';
 import { TagModule } from './tag/tag.module';
+import { TaskCategoryModule } from './taskCategory/tasks.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { TagModule } from './tag/tag.module';
     UserModule,
     AuthModule,
     TasksModule,
-    TagModule
+    TagModule,
+    TaskCategoryModule
   ],
   providers: [PrismaService],
 })

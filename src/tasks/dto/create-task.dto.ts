@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsArray, IsInt, IsNotEmpty, IsDate } from 'class-validator';
+import { IsString, IsOptional, IsArray, IsInt, IsNotEmpty, IsBoolean } from 'class-validator';
 
 export class CreateTaskDto {
   @IsString()
@@ -17,13 +17,21 @@ export class CreateTaskDto {
   @IsOptional()
   priority?: number;
 
-  @IsDate()
+  @IsString()
   @IsOptional()
-  deadline?: Date;
+  deadline?: string; // Changed to string
 
   @IsInt()
   @IsOptional()
   categoryId?: number;
+
+  @IsInt()
+  @IsOptional()
+  parentId?: number; // Parent task ID
+
+  @IsBoolean()
+  @IsOptional()
+  isComplete?: boolean;
 
   @IsArray()
   @IsOptional()

@@ -4,6 +4,7 @@ import { UserModule } from "./user/user.module";
 import { AuthModule } from "./auth/auth.module";
 import { TasksModule } from "./tasks/tasks.module";
 import { TagModule } from "./tag/tag.module";
+import { TaskCategoryModule } from "./taskCategory/tasks.module";
 
 export const routes:Routes=
     [
@@ -26,6 +27,10 @@ export const routes:Routes=
                 {
                     path:'/tag',
                     module:TagModule
+                },
+                {
+                    path:'/task/task-category',
+                    module:TaskCategoryModule
                 }
 
             ]

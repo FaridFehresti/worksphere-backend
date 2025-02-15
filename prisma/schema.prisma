@@ -36,16 +36,20 @@ model Tag {
 model Task {
   id            Int           @id @default(autoincrement())
   title         String
-  description   String
+  description   String?
   hardness      Int?
   priority      Int?
-  deadline      DateTime?
+  deadline      String? // Changed from DateTime to String
+  isComplete    Boolean      @default(false)
   createdBy     Int
   userId        Int
   taskCategoryId Int?
-  
+  parentId      Int? // Self-referential relation for subtasks
+
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdByUser User          @relation("CreatedTasks", fields: [createdBy], references: [id], onDelete: Cascade) // ✅ Added reverse relation
+  createdByUser User          @relation("CreatedTasks", fields: [createdBy], references: [id], onDelete: Cascade)
   taskCategory  TaskCategory? @relation(fields: [taskCategoryId], references: [id], onDelete: SetNull)
-  tags          Tag[]         @relation("TaskTags") 
+  tags          Tag[]         @relation("TaskTags")
+  parentTask    Task?         @relation("TaskSubtasks", fields: [parentId], references: [id], onDelete: Cascade)
+  subtasks      Task[]        @relation("TaskSubtasks")
 }

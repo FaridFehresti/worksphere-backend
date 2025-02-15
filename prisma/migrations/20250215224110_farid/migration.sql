@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "Task" ADD COLUMN     "isComplete" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "parentId" INTEGER,
+ALTER COLUMN "description" DROP NOT NULL,
+ALTER COLUMN "deadline" SET DATA TYPE TEXT;
+
+-- AddForeignKey
+ALTER TABLE "Task" ADD CONSTRAINT "Task_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "Task"("id") ON DELETE CASCADE ON UPDATE CASCADE;
